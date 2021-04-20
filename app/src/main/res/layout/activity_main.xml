@@ -6,7 +6,52 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:textAlignment="center"
     tools:context=".MainActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="0dp"
+        android:layout_marginBottom="0dp">
+
+        <TextView
+            android:id="@+id/todayText"
+            android:layout_width="149dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="36dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="60dp"
+            android:layout_toStartOf="@+id/toToday"
+            android:drawableRight="@mipmap/arraw_down"
+            android:drawablePadding="6dp"
+            android:textColor="@color/color_333333"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            tools:text="4, 2019" />
+
+        <TextView
+            android:id="@+id/toToday"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="36dp"
+            android:layout_marginRight="0dp"
+            android:background="@drawable/calendar_today_shape"
+            android:paddingLeft="10dp"
+            android:paddingTop="3dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="3dp"
+            android:text="Today"
+            android:textColor="@color/color_3853e8"
+            android:textSize="30sp" />
+
+    </RelativeLayout>
 
     <include
         layout="@layout/content_main"
@@ -42,43 +87,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@android:drawable/ic_dialog_email" />
-    <RelativeLayout
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/todayText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            tools:text="4, 2019"
-            android:drawableRight="@mipmap/arraw_down"
-            android:drawablePadding="6dp"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:textColor="@color/color_333333"
-            />
-
-        <TextView
-            android:id="@+id/toToday"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/calendar_today_shape"
-            android:text="Today"
-            android:layout_centerVertical="true"
-            android:layout_alignParentRight="true"
-            android:paddingTop="3dp"
-            android:paddingBottom="3dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:textColor="@color/color_3853e8"
-            android:textSize="12sp"
-            />
-
-    </RelativeLayout>
     <!--    <TextView-->
     <!--        android:id="@+id/Date_Gregorian"-->
     <!--        android:layout_width="196dp"-->
@@ -89,8 +98,10 @@
     <!--        app:layout_constraintHorizontal_bias="0.497"-->
     <!--        app:layout_constraintStart_toStartOf="parent"-->
     <!--        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />-->
+
+
     <com.haibin.calendarview.CalendarLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         app:calendar_content_view_id="@+id/calendarRecyclerView"
@@ -107,8 +118,8 @@
             app:current_day_text_color="#333333"
             app:current_month_lunar_text_color="#999999"
             app:current_month_text_color="#333333"
-            app:day_text_size="14sp"
-            app:lunar_text_size="10sp"
+            app:day_text_size="20sp"
+            app:lunar_text_size="18sp"
             app:min_year="2019"
             app:month_view="com.example.project_calendar.calendarview.MeiZuMonthView"
             app:month_view_auto_select_day="last_select_day_ignore_current"
@@ -131,19 +142,6 @@
 
     </com.haibin.calendarview.CalendarLayout>
 
-
-    <TextView
-        android:id="@+id/Date_lunar"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
-        android:layout_marginLeft="10dp"
-        android:clickable="true"
-        android:gravity="center_vertical"
-        android:text="Date in Lunar Calendar"
-        app:layout_constraintEnd_toEndOf="@+id/Date_Gregorian"
-        app:layout_constraintStart_toStartOf="@+id/Date_Gregorian"
-        app:layout_constraintTop_toBottomOf="@+id/Date_Gregorian" />
-
     <TextView
         android:id="@+id/weather"
         android:layout_width="409dp"
@@ -158,13 +156,16 @@
 
     <TextView
         android:id="@+id/TodayInHistory"
-        android:layout_width="wrap_content"
-        android:layout_height="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
         android:layout_marginLeft="10dp"
         android:clickable="true"
         android:gravity="center_vertical"
         android:onClick="gotoTIH"
-        android:text="today in history"
+        android:text="Check out what happened today in history"
+        android:textAlignment="center"
+        android:textColor="#3F51B5"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TodoList" />
