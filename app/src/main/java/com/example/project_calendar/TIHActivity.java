@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +24,8 @@ import java.util.Locale;
 public class TIHActivity extends AppCompatActivity {
 //today in history
     TextView tih_title;
-    TextView textView;
+    Button returntomain;
+    Button sharelink;
     Date dateWithoutTime;
 
     @Override
@@ -35,17 +37,34 @@ public class TIHActivity extends AppCompatActivity {
         String formattedMD= new SimpleDateFormat("MMMM/dd").format(cal.getTime());//3 M for shorted name of month, 4 M for full name of the month
         tih_title=findViewById(R.id.HIT_Title);
         tih_title.setText("Today in History");
+        returntomain=findViewById(R.id.button_return);
+        returntomain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        sharelink=findViewById(R.id.ShareToSocial);
+        sharelink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                    shareIntent.setType("text/plain");
+                    shareIntent.putExtra(Intent.EXTRA_SUBJECT, "Today in History");
+                    String shareMessage= "\nCheck out what happened today in history\n\n";
+                    shareMessage = shareMessage + "https://www.onthisday.com/events/" + formattedMD +"\n\n";
+                    shareIntent.putExtra(Intent.EXTRA_TEXT, shareMessage);
+                    startActivity(Intent.createChooser(shareIntent, "choose one"));
+                } catch(Exception e) {
+                    //e.toString();
+                }
+            }
+        });
         WebView myWebView = (WebView) findViewById(R.id.webview);
         myWebView.setWebViewClient(new MyWebViewClient());
         myWebView.loadUrl("https://www.onthisday.com/events/" + formattedMD);
-//        textView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //https://www.google.com/#q=
-//                Toast.makeText(TIHActivity.this, textView.getText(), Toast.LENGTH_SHORT).show();
-//                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.onthisday.com/events/" + formattedMD)));
-//            }
-//        });
+
     }
     private class MyWebViewClient extends WebViewClient {
         @Override
