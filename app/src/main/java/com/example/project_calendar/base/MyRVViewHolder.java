@@ -16,7 +16,7 @@ public class MyRVViewHolder extends RecyclerView.ViewHolder {
         mViews = new SparseArray<>();
     }
 
-    //viewId获取控件
+    //viewId
     public <T extends View> T getView(int viewId) {
         View view = mViews.get(viewId);
         if (view == null) {
