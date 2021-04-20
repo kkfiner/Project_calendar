@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinatorLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <include
+        layout="@layout/content_main"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.Project_calendar.AppBarOverlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/Theme.Project_calendar.PopupOverlay" />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@android:drawable/ic_dialog_email" />
+    <RelativeLayout
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/todayText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="4, 2019"
+            android:drawableRight="@mipmap/arraw_down"
+            android:drawablePadding="6dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/color_333333"
+            />
+
+        <TextView
+            android:id="@+id/toToday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/calendar_today_shape"
+            android:text="Today"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/color_3853e8"
+            android:textSize="12sp"
+            />
+
+    </RelativeLayout>
+    <!--    <TextView-->
+    <!--        android:id="@+id/Date_Gregorian"-->
+    <!--        android:layout_width="196dp"-->
+    <!--        android:layout_height="199dp"-->
+    <!--        android:clickable="true"-->
+    <!--        android:text="Date in Gregorian Calendar"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintHorizontal_bias="0.497"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />-->
+    <com.haibin.calendarview.CalendarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:calendar_content_view_id="@+id/calendarRecyclerView"
+        app:calendar_show_mode="both_month_week_view"
+        app:default_status="expand">
+
+        <com.haibin.calendarview.CalendarView
+            android:id="@+id/calendarView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            app:current_day_lunar_text_color="#999999"
+            app:current_day_text_color="#333333"
+            app:current_month_lunar_text_color="#999999"
+            app:current_month_text_color="#333333"
+            app:day_text_size="14sp"
+            app:lunar_text_size="10sp"
+            app:min_year="2019"
+            app:month_view="com.example.project_calendar.calendarview.MeiZuMonthView"
+            app:month_view_auto_select_day="last_select_day_ignore_current"
+            app:month_view_show_mode="mode_only_current"
+            app:other_month_text_color="#e1e1e1"
+            app:scheme_text=""
+            app:scheme_text_color="#333333"
+            app:scheme_theme_color="#3853E8"
+            app:select_mode="default_mode"
+            app:selected_lunar_text_color="#ffffff"
+            app:selected_text_color="#ffffff"
+            app:selected_theme_color="#ffffff"
+            app:week_background="#ffffff"
+            app:week_bar_view="com.example.project_calendar.calendarview.CustomWeekBar"
+            app:week_start_with="sun"
+            app:week_text_color="#333333"
+            app:week_view="com.example.project_calendar.calendarview.MeizuWeekView"
+            app:week_view_scrollable="true" />
+
+
+    </com.haibin.calendarview.CalendarLayout>
+
+
+    <TextView
+        android:id="@+id/Date_lunar"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:text="Date in Lunar Calendar"
+        app:layout_constraintEnd_toEndOf="@+id/Date_Gregorian"
+        app:layout_constraintStart_toStartOf="@+id/Date_Gregorian"
+        app:layout_constraintTop_toBottomOf="@+id/Date_Gregorian" />
+
+    <TextView
+        android:id="@+id/weather"
+        android:layout_width="409dp"
+        android:layout_height="0dp"
+        android:text="weather"
+        app:layout_constraintBottom_toTopOf="@+id/TodoList"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Date_lunar"
+        app:layout_constraintVertical_bias="0.547" />
+
+    <TextView
+        android:id="@+id/TodayInHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginLeft="10dp"
+        android:clickable="true"
+        android:gravity="center_vertical"
+        android:onClick="gotoTIH"
+        android:text="today in history"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TodoList" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:clickable="true"
+            android:gravity="center_vertical"
+            android:onClick="gotoTIH"
+            android:text="To-do List"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_add"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_gravity="right"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@mipmap/j"
+            android:gravity="center"
+
+            android:textColor="#fff"
+            android:textSize="24sp" />
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/lv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:background="#fff" />
+
+</LinearLayout>
