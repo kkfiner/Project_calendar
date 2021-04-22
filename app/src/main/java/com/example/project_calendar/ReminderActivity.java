@@ -10,7 +10,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 public class ReminderActivity extends AppCompatActivity {
-//reminder
+// NOT USED
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

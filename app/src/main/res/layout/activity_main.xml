@@ -9,6 +9,23 @@
     android:textAlignment="center"
     tools:context=".MainActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.Project_calendar.AppBarOverlay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/Theme.Project_calendar.PopupOverlay" />
+    </com.google.android.material.appbar.AppBarLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
@@ -19,16 +36,17 @@
 
         <TextView
             android:id="@+id/todayText"
-            android:layout_width="149dp"
+            android:layout_width="151dp"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_marginStart="36dp"
             android:layout_marginTop="0dp"
-            android:layout_marginEnd="60dp"
+            android:layout_marginEnd="88dp"
             android:layout_toStartOf="@+id/toToday"
             android:drawableRight="@mipmap/arraw_down"
             android:drawablePadding="6dp"
+            android:onClick="gotoweather"
             android:textColor="@color/color_333333"
             android:textSize="30sp"
             android:textStyle="bold"
@@ -57,24 +75,6 @@
         layout="@layout/content_main"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:theme="@style/Theme.Project_calendar.AppBarOverlay"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.Project_calendar.PopupOverlay" />
-
-    </com.google.android.material.appbar.AppBarLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
@@ -160,7 +160,7 @@
         android:layout_height="43dp"
         android:layout_marginLeft="10dp"
         android:clickable="true"
-        android:gravity="center_vertical"
+        android:gravity="center_horizontal|center_vertical"
         android:onClick="gotoTIH"
         android:text="Check out what happened today in history"
         android:textAlignment="center"

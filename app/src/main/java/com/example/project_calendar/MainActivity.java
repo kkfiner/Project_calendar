@@ -11,8 +11,8 @@ import com.example.project_calendar.base.EventBus_Tag;
 import com.example.project_calendar.base.MyRVViewHolder;
 import com.example.project_calendar.base.QQBean;
 import com.example.project_calendar.util.ToastUtil;
+import com.example.project_calendar.weather.WeatherFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.haibin.calendarview.Calendar;
 import com.haibin.calendarview.CalendarView;
 
@@ -26,6 +26,7 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity implements CalendarView.OnCa
     @BindView(R.id.calendarView)
     CalendarView calendarView;
 
-
+    Button back;
     private String selectTime = "";
     private String todayTime = "";
     private List<QQBean> itemBeanList = new ArrayList();
@@ -69,14 +70,14 @@ public class MainActivity extends AppCompatActivity implements CalendarView.OnCa
         setSupportActionBar(toolbar);
         Date c = java.util.Calendar.getInstance().getTime();
         FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-
-        });
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//
+//        });
 
 
         todayTime = calendarView.getCurYear() + "-" + append0(calendarView.getCurMonth()) + "-" + append0(calendarView.getCurDay());
@@ -85,13 +86,7 @@ public class MainActivity extends AppCompatActivity implements CalendarView.OnCa
         calendarView.setRange(2020, 1, 1, calendarView.getCurYear(), 12, 31);
         calendarView.scrollToCalendar(calendarView.getCurYear(), calendarView.getCurMonth(), calendarView.getCurDay());
 
-        findViewById(R.id.toToday).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                calendarView.scrollToCalendar(calendarView.getCurYear(), calendarView.getCurMonth(), calendarView.getCurDay());
-
-            }
-        });
+        findViewById(R.id.toToday).setOnClickListener(view -> calendarView.scrollToCalendar(calendarView.getCurYear(), calendarView.getCurMonth(), calendarView.getCurDay()));
 
         initData();
     }
@@ -125,9 +120,13 @@ public class MainActivity extends AppCompatActivity implements CalendarView.OnCa
        Intent intent=new Intent(this,TIHActivity.class);
        startActivity(intent);
     }
+    public void gotoweather(View view){
+        Intent intent=new Intent(this, WeatherActivity.class);
+        startActivity(intent);
+    }
 
     public void gotoReminder(){
-        Intent intent=new Intent(this,ReminderActivity.class);
+        Intent intent=new Intent(this,AddEditActivity.class);
         startActivity(intent);
     }
 
