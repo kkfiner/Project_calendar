@@ -23,7 +23,6 @@ public class MeiZuMonthView extends MonthView {
     private float circleWidth ;
     private float leftPadding;
 
-
     private float mPointRadius;
 
     private Paint mPointPaint = new Paint();
@@ -63,6 +62,7 @@ public class MeiZuMonthView extends MonthView {
 
 
 
+
     @Override
     protected boolean onDrawSelected(Canvas canvas, Calendar calendar, int x, int y, boolean hasScheme) {
         mSelectedPaint.setAntiAlias(true);
@@ -73,6 +73,7 @@ public class MeiZuMonthView extends MonthView {
         canvas.drawCircle(x + mItemWidth / 2    , y + mItemWidth / 2  + leftPadding / 2    , circleWidth / 2,  mSelectedPaint);
         return true;
     }
+
 
     @Override
     protected void onDrawScheme(Canvas canvas, Calendar calendar, int x, int y) {
@@ -117,6 +118,7 @@ public class MeiZuMonthView extends MonthView {
             }
         }
     }
+
 
 
 

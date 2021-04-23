@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.project_calendar.base.BaseActivity;
 import com.example.project_calendar.base.EventBus_Tag;
 import com.example.project_calendar.base.QQBean;
 import com.example.project_calendar.util.DateUtil;
@@ -20,17 +21,17 @@ import com.example.project_calendar.util.ToastUtil;
 import org.greenrobot.eventbus.EventBus;
 import org.litepal.crud.DataSupport;
 
-public class AddEditActivity extends AppCompatActivity {
+public class AddEditActivity extends BaseActivity {
     TextView Reminder_Finish, add_new_reminder;
     EditText ReminderTitleInput, ReminderTextInput;
     Spinner MonthSpinner, Date_spinner;
-    int myTag;//tag
+    int myTag;//标记
     String yuess = "1", riss = "1";
     int stype = 0;//0 add，1 edit
     QQBean bean;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminder);
 
@@ -60,7 +61,7 @@ public class AddEditActivity extends AppCompatActivity {
                finish();
             }
         });
-        //right
+        //confirm
         add_new_reminder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +72,7 @@ public class AddEditActivity extends AppCompatActivity {
                 if (
                         StrUtil.isEmpty(temp1) ||
                                 StrUtil.isEmpty(temp2)) {
-                    ToastUtil.showToast(AddEditActivity.this, "Incomplete content");
+                    ToastUtil.showToast(AddEditActivity.this, "Incomplete contend");
                     return;
                 }
 

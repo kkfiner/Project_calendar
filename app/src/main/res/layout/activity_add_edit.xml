@@ -86,7 +86,7 @@
             android:layout_toLeftOf="@+id/view_0"
             android:background="@drawable/shape_bg_0f8dfb"
             android:gravity="center"
-            android:text="确定"
+            android:text="Confirm"
             android:textColor="#fff"
             android:textSize="20sp" />
 
@@ -97,7 +97,7 @@
             android:layout_toRightOf="@+id/view_0"
             android:background="@drawable/shape_bg_fafafa"
             android:gravity="center"
-            android:text="取消"
+            android:text="Cancel"
             android:textColor="#fff"
             android:textSize="20sp" />
 

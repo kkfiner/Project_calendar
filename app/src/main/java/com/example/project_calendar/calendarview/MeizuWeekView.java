@@ -21,8 +21,6 @@ public class MeizuWeekView extends WeekView {
 
     private float mPointRadius;
 
-     //背景圆点
-
     private Paint mPointPaint = new Paint();
 
     public MeizuWeekView(Context context) {
@@ -76,7 +74,7 @@ public class MeizuWeekView extends WeekView {
         mSchemeBasicPaint.setColor(calendar.getSchemeColor());
 
         canvas.drawCircle(x + mItemWidth - mPadding - mRadio / 2, mPadding + mRadio, mRadio, mSchemeBasicPaint);
-        //draw red dot
+        //画小红点
         canvas.drawCircle(x + mItemWidth / 2, mItemHeight - mPadding, mPointRadius, mPointPaint);
 
         if (!TextUtils.isEmpty(calendar.getScheme())){
@@ -114,7 +112,7 @@ public class MeizuWeekView extends WeekView {
         }
     }
 
-    //dp to px
+
     private static int dipToPx(Context context, float dpValue) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dpValue * scale + 0.5f);

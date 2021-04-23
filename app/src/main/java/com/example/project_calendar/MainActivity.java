@@ -5,16 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
-
-import com.example.project_calendar.base.BaseRecyclerAdapter;
-import com.example.project_calendar.base.EventBus_Tag;
-import com.example.project_calendar.base.MyRVViewHolder;
-import com.example.project_calendar.base.QQBean;
-import com.example.project_calendar.util.ToastUtil;
-import com.example.project_calendar.weather.WeatherFragment;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.haibin.calendarview.Calendar;
-import com.haibin.calendarview.CalendarView;
+import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
@@ -22,13 +18,17 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.View;
-
-import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
+import com.example.project_calendar.base.BaseActivity;
+import com.example.project_calendar.base.BaseRecyclerAdapter;
+import com.example.project_calendar.base.EventBus_Tag;
+import com.example.project_calendar.base.MyRVViewHolder;
+import com.example.project_calendar.base.QQBean;
+import com.example.project_calendar.util.DateUtil;
+import com.example.project_calendar.util.ToastUtil;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.haibin.calendarview.Calendar;
+import com.haibin.calendarview.CalendarView;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -36,13 +36,12 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.litepal.crud.DataSupport;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements CalendarView.OnCalendarSelectListener{
+public class MainActivity extends BaseActivity implements CalendarView.OnCalendarSelectListener {
     @BindView(R.id.lv)
     RecyclerView lv;
     @BindView(R.id.tv_add)
@@ -52,14 +51,15 @@ public class MainActivity extends AppCompatActivity implements CalendarView.OnCa
     @BindView(R.id.calendarView)
     CalendarView calendarView;
 
-    Button back;
+
     private String selectTime = "";
     private String todayTime = "";
     private List<QQBean> itemBeanList = new ArrayList();
     private MyAdapter myAdapter;
     private boolean firstTime = true;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
@@ -67,17 +67,17 @@ public class MainActivity extends AppCompatActivity implements CalendarView.OnCa
         EventBus.getDefault().register(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        Date c = java.util.Calendar.getInstance().getTime();
+//        setSupportActionBar(toolbar);
+
         FloatingActionButton fab = findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//
-//        });
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
+            }
+
+        });
 
 
         todayTime = calendarView.getCurYear() + "-" + append0(calendarView.getCurMonth()) + "-" + append0(calendarView.getCurDay());
@@ -86,7 +86,13 @@ public class MainActivity extends AppCompatActivity implements CalendarView.OnCa
         calendarView.setRange(2020, 1, 1, calendarView.getCurYear(), 12, 31);
         calendarView.scrollToCalendar(calendarView.getCurYear(), calendarView.getCurMonth(), calendarView.getCurDay());
 
-        findViewById(R.id.toToday).setOnClickListener(view -> calendarView.scrollToCalendar(calendarView.getCurYear(), calendarView.getCurMonth(), calendarView.getCurDay()));
+        findViewById(R.id.toToday).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                calendarView.scrollToCalendar(calendarView.getCurYear(), calendarView.getCurMonth(), calendarView.getCurDay());
+
+            }
+        });
 
         initData();
     }
@@ -104,29 +110,25 @@ public class MainActivity extends AppCompatActivity implements CalendarView.OnCa
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        if(id==R.id.Reminder){
-           gotoReminder();
+        if (id == R.id.Reminder) {
+            gotoReminder();
         }
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(this,"setup click recieved in MainActivity",Toast.LENGTH_LONG).show();
+            Toast.makeText(this, "setup click recieved in MainActivity", Toast.LENGTH_LONG).show();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    public void gotoTIH(View view){
-       Intent intent=new Intent(this,TIHActivity.class);
-       startActivity(intent);
-    }
-    public void gotoweather(View view){
-        Intent intent=new Intent(this, WeatherActivity.class);
+    public void gotoTIH(View view) {
+        Intent intent = new Intent(this, TIHActivity.class);
         startActivity(intent);
     }
 
-    public void gotoReminder(){
-        Intent intent=new Intent(this,AddEditActivity.class);
+    public void gotoReminder() {
+        Intent intent = new Intent(this, ReminderActivity.class);
         startActivity(intent);
     }
 
@@ -138,8 +140,8 @@ public class MainActivity extends AppCompatActivity implements CalendarView.OnCa
             @Override
             public void onClick(View v) {
 //                new QQDialog(MainActivity.this, 0).showDialog();
-                Intent intent = new Intent(MainActivity.this,AddEditActivity.class);
-                intent.putExtra("stype",0);
+                Intent intent = new Intent(MainActivity.this, AddEditActivity.class);
+                intent.putExtra("stype", 0);
                 startActivity(intent);
             }
         });
@@ -191,11 +193,9 @@ public class MainActivity extends AppCompatActivity implements CalendarView.OnCa
             TextView tv_name2 = holder.getView(R.id.tv_name2);
 
 
-
             //set view
             tv_name.setText("" + bean.getName1());
             tv_name1.setText("" + bean.getName2());
-
 
 
             tv_time.setText(bean.getYueri());
@@ -211,9 +211,9 @@ public class MainActivity extends AppCompatActivity implements CalendarView.OnCa
                 @Override
                 public void onClick(View v) {
 //                    new QQDialog(MainActivity.this, 1, bean).showDialog();
-                    Intent intent = new Intent(MainActivity.this,AddEditActivity.class);
-                    intent.putExtra("stype",1);
-                    intent.putExtra("bean",bean);
+                    Intent intent = new Intent(MainActivity.this, AddEditActivity.class);
+                    intent.putExtra("stype", 1);
+                    intent.putExtra("bean", bean);
                     startActivity(intent);
 
                 }
@@ -226,7 +226,7 @@ public class MainActivity extends AppCompatActivity implements CalendarView.OnCa
         switch (event.getTag()) {
             case 1:
                 itemBeanList.clear();
-                List<QQBean> temp = DataSupport.findAll(QQBean.class);//check list Comment
+                List<QQBean> temp = DataSupport.findAll(QQBean.class);//查询表Comment
                 itemBeanList.addAll(temp);
                 myAdapter.notifyDataSetChanged();
                 break;
@@ -248,7 +248,7 @@ public class MainActivity extends AppCompatActivity implements CalendarView.OnCa
 
     @Override
     public void onCalendarSelect(Calendar calendar, boolean isClick) {
-        //todayText.setText(calendar.getYear() + "Year" + calendar.getMonth() + "Month");
+
         todayText.setText(calendar.getMonth()+ " , "+ calendar.getYear());
         String time = calendar.getYear() + "-" + append0(calendar.getMonth()) + "-" + append0(calendar.getDay());
 
@@ -265,6 +265,14 @@ public class MainActivity extends AppCompatActivity implements CalendarView.OnCa
 
 //                initData(selectTime);
             }
+        }
+        Log.v("-------------", DateUtil.getTodayData_3());
+        if (isClick) {
+            String timesss = append0(calendar.getDay()) + "/" + append0(calendar.getMonth()) + "/" + calendar.getYear();
+            Intent intent = new Intent(MainActivity.this, RiliActivity.class);
+            intent.putExtra("va1", timesss);
+            intent.putExtra("va2", calendar.getLunar());
+            startActivity(intent);
         }
     }
 

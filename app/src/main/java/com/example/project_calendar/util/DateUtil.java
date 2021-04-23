@@ -200,10 +200,10 @@ public class DateUtil {
     // strTime要转换的string类型的时间，formatType要转换的格式yyyy-MM-dd HH:mm:ss//yyyy年MM月dd日
     // HH时mm分ss秒，
     // strTime的时间格式必须要与formatType的时间格式相同
-    public static String type_1 = "MM-dd-yyyy";
-    public static String type_2 = "MM-dd-yyyy HH:mm:ss";
-    public static String type_3 = "MM/dd/yyyy HH:mm";
-    //public static String type_4 = "yyyy年MM月dd日";
+    public static String type_1 = "yyyy-MM-dd";
+    public static String type_2 = "yyyy-MM-dd HH:mm:ss";
+    public static String type_3 = "yyyy/MM/dd HH:mm";
+    public static String type_4 = "yyyy年MM月dd日";
 
     public static Date stringToDate(String strTime, String formatType) {
         SimpleDateFormat formatter = new SimpleDateFormat(formatType);

@@ -15,7 +15,6 @@
         android:maxLines="2"
         android:textColor="@color/colorPrimary"
         android:text="name"
-        android:textSize="24sp"
         android:textStyle="bold" />
 
     <TextView
@@ -23,21 +22,19 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_name"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:ellipsize="end"
         android:maxLines="3"
-        android:text="1"
-        android:textSize="18sp" />
+        android:text="1"  />
     <TextView
         android:id="@+id/tv_name2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_name1"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:ellipsize="end"
         android:maxLines="3"
-        android:text="1"
-        android:textSize="18sp" />
+        android:text="1"  />
 
 
 
@@ -49,21 +46,20 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_name1"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:background="@drawable/shape_bg_0f8dfb"
         android:padding="5dp"
         android:textColor="#fff"
         android:ellipsize="end"
         android:maxLines="3"
-        android:text="Edit"
-        android:textSize="17sp" />
+        android:text="modify"  />
 
     <TextView
         android:id="@+id/tv_del"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_name1"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
         android:layout_toRightOf="@+id/tv_up"
         android:background="@drawable/shape_bg_fafafa"
@@ -71,23 +67,21 @@
         android:ellipsize="end"
         android:textColor="#fff"
         android:maxLines="3"
-        android:text="Delete"
-        android:textSize="17sp" />
+        android:text="delete"  />
 
     <TextView
         android:id="@+id/tv_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_name1"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="10dp"
         android:layout_alignParentRight="true"
         android:textColor="@color/colorAccent"
         android:padding="5dp"
         android:ellipsize="end"
         android:maxLines="3"
-        android:text="Event"
-        android:textSize="17sp" />
+        android:text="事件"  />
         <View
             android:layout_marginTop="5dp"
             android:layout_below="@+id/tv_up"

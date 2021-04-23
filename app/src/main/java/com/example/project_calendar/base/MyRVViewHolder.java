@@ -26,7 +26,6 @@ public class MyRVViewHolder extends RecyclerView.ViewHolder {
         return (T) view;
     }
 
-
     public MyRVViewHolder setText(int viewId, String text) {
         TextView tv = getView(viewId);
         tv.setText(text);

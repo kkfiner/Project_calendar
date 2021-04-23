@@ -18,6 +18,7 @@ public class SimpleMonthView extends MonthView {
         super(context);
 
         setLayerType(View.LAYER_TYPE_SOFTWARE,mSelectedPaint);
+
         mSelectedPaint.setMaskFilter(new BlurMaskFilter(25, BlurMaskFilter.Blur.SOLID));
     }
 

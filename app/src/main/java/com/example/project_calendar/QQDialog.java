@@ -25,6 +25,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.litepal.crud.DataSupport;
 
 
+
 public class QQDialog extends BaseDialog {
 
     TextView tv_commit, tv_cannal, tv_title;
@@ -70,7 +71,7 @@ public class QQDialog extends BaseDialog {
                 dialog.dismiss();
             }
         });
-
+        //confirm
         tv_commit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,7 +82,7 @@ public class QQDialog extends BaseDialog {
                 if (
                         StrUtil.isEmpty(temp1) ||
                                 StrUtil.isEmpty(temp2)   ) {
-                    ToastUtil.showToast(activity, "incomplete content");
+                    ToastUtil.showToast(activity, "Incomplete content");
                     return;
                 }
 
@@ -125,7 +126,7 @@ public class QQDialog extends BaseDialog {
         Window window = dialog.getWindow();
         window.setLayout((int) (ScreenUtil.getScreenWidth(activity) * 0.8), WindowManager.LayoutParams.WRAP_CONTENT );
         window.setGravity(Gravity.CENTER);
-        //edge problem
+        //resolve edge prob
         window.setBackgroundDrawable(new BitmapDrawable());
         initDialogEvent(window);
     }

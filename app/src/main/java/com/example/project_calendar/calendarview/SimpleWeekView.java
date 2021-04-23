@@ -10,7 +10,6 @@ import com.haibin.calendarview.Calendar;
 import com.haibin.calendarview.WeekView;
 
 
-
 public class SimpleWeekView extends WeekView {
     private int mRadius;
 
