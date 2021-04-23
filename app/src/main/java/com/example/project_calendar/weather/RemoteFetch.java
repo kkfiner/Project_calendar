@@ -18,7 +18,7 @@ import android.util.Log;
 import com.example.project_calendar.R;
 
 public class RemoteFetch {
-    ProgressDialog pd;
+
     String txtJson;
     private static String OPEN_WEATHER_MAP_API =
             "https://api.openweathermap.org/data/2.5/weather?q=";
@@ -62,5 +62,7 @@ public class RemoteFetch {
             return null;
         }
     }
+
+
 
 }

@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -37,7 +38,7 @@ import java.util.Locale;
 
 public class WeatherFragment extends Fragment {
     Typeface weatherFont;
-
+    AsyncTask<Void,Void,String> runningTask;
     TextView cityField;
     TextView updatedField;
     TextView detailsField;
@@ -145,6 +146,7 @@ public class WeatherFragment extends Fragment {
         });
 
         weatherIcon.setTypeface(weatherFont);
+        runningtask();
         return rootView;
     }
     private void showInputDialog(){
@@ -199,7 +201,6 @@ public class WeatherFragment extends Fragment {
     }
     public void changeCity(String city){
         System.out.println("changecity in wf");
-       // if(!city.isEmpty()) { //do nothing with empty string
             updateWeatherData(city);
             Fragment frg = null;
             frg = getFragmentManager().findFragmentByTag("WeatherFragment");
@@ -208,6 +209,41 @@ public class WeatherFragment extends Fragment {
             ft.attach(frg);
             ft.commit();
             new CityPreference(getActivity()).setCity(city);
-       // }
+
+    }
+
+
+    public void runningtask(){
+        System.out.println("in running task");
+        if (runningTask != null)
+            runningTask.cancel(true);
+            runningTask = new LongOperation();
+            runningTask.execute();
+
+    }
+
+    private final class LongOperation extends AsyncTask<Void, Void, String> {
+
+
+        @Override
+        protected String doInBackground(Void... params) {
+            for(int i=0;i<5;i++){
+                try {
+                    Thread.sleep(1500);
+                    updateWeatherData(new CityPreference(getActivity()).getCity());
+                    System.out.println("updating weather data in background"+i);
+                } catch (InterruptedException e) {
+                    // We were cancelled; stop sleeping!
+                }
+            }
+            return "Executed do in background";
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+            System.out.println("Executed"); // txt.setText(result);
+            // You might want to change "executed" for the returned string
+            // passed into onPostExecute(), but that is up to you
+        }
     }
 }
