@@ -169,16 +169,6 @@ public class WeatherFragment extends Fragment {
         builder.show();
     }
 
-//    public void changeCity(String city){
-//        WeatherFragment wf = (WeatherFragment)getSupportFragmentManager()
-//                .findFragmentById(R.id.container);
-//
-//        System.out.println("city in WA changecity "+city);
-//        if (wf != null) {
-//            wf.changeCity(city);
-//        }
-//        new CityPreference(this).setCity(city);
-//    }
     private void setWeatherIcon(int actualId, long sunrise, long sunset){
         int id = actualId / 100;
         String icon = "";

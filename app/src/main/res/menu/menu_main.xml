@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.example.project_calendar.MainActivity">
     <item
-        android:icon="@android:drawable/ic_menu_share"
-        android:title="SharePage"
-        android:visible="true"
-        app:showAsAction="ifRoom" />
+        android:id="@+id/app_bar_switch"
+        android:title="ChangeView"
+        app:actionLayout="@layout/switch_item"
+        app:showAsAction="always" />
     <item
         android:id="@+id/Reminder"
         android:icon="@android:drawable/ic_menu_edit"

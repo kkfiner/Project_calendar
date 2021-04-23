@@ -32,11 +32,12 @@ public class TIHActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tih);
+        setTitle("Today in History");
         Calendar cal = Calendar.getInstance();
         System.out.println("month"+ new SimpleDateFormat("MMMM/dd").format(cal.getTime()));
         String formattedMD= new SimpleDateFormat("MMMM/dd").format(cal.getTime());//3 M for shorted name of month, 4 M for full name of the month
-        tih_title=findViewById(R.id.HIT_Title);
-        tih_title.setText("Today in History");
+        //tih_title=findViewById(R.id.HIT_Title);
+//        tih_title.setText("What Happened Today in History");
         returntomain=findViewById(R.id.button_return);
         returntomain.setOnClickListener(new View.OnClickListener() {
             @Override

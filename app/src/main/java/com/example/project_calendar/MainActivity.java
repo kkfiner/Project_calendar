@@ -14,6 +14,7 @@ import com.example.project_calendar.util.ToastUtil;
 import com.example.project_calendar.weather.WeatherFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.haibin.calendarview.Calendar;
+import com.haibin.calendarview.CalendarLayout;
 import com.haibin.calendarview.CalendarView;
 
 import androidx.annotation.RequiresApi;
@@ -27,6 +28,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +60,8 @@ public class MainActivity extends AppCompatActivity implements CalendarView.OnCa
     private List<QQBean> itemBeanList = new ArrayList();
     private MyAdapter myAdapter;
     private boolean firstTime = true;
+    CalendarLayout mcalendarlayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -107,12 +111,31 @@ public class MainActivity extends AppCompatActivity implements CalendarView.OnCa
         if(id==R.id.Reminder){
            gotoReminder();
         }
+        if(id==R.id.app_bar_switch){
+            System.out.println("clicked switch");
+            Switch sw=findViewById(R.id.app_bar_switch);
+            sw.setOnClickListener(new View.OnClickListener(){
+                @Override
+                public void onClick(View v) {
+                    if(mcalendarlayout.isExpand()) {
+                        mcalendarlayout.shrink();
+                        System.out.println("switch clicked");
+                    }else{
+                        mcalendarlayout.expand();
+                        System.out.println("switch clicked");
+                    }
+
+                }
+            });
+
+        }
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            Toast.makeText(this,"setup click recieved in MainActivity",Toast.LENGTH_LONG).show();
+            gotosettings();
+            Toast.makeText(this,"clicked settings",Toast.LENGTH_LONG).show();
             return true;
         }
-
+//
         return super.onOptionsItemSelected(item);
     }
 
@@ -129,7 +152,10 @@ public class MainActivity extends AppCompatActivity implements CalendarView.OnCa
         Intent intent=new Intent(this,AddEditActivity.class);
         startActivity(intent);
     }
-
+    public void gotosettings(){
+        Intent intent=new Intent(this, SettingsActivity.class);
+        startActivity(intent);
+    }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void initData() {
@@ -239,7 +265,6 @@ public class MainActivity extends AppCompatActivity implements CalendarView.OnCa
         }
         return String.valueOf(value);
     }
-
 
     @Override
     public void onCalendarOutOfRange(Calendar calendar) {
