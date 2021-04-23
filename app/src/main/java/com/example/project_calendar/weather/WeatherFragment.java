@@ -149,15 +149,20 @@ public class WeatherFragment extends Fragment {
     }
     private void showInputDialog(){
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
-        builder.setTitle("Change city");
+        builder.setTitle("Change City");
+        builder.setMessage("type city name, state code(US only), country code.\ne.g. new york city,us");
         final EditText input = new EditText(getActivity());
         input.setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(input);
-        builder.setPositiveButton("Go", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("confirm", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if(input!=null) {
+                if(input.getText().toString().isEmpty()) {
+                    dialog.cancel();//close dialog if nothing is entered
+                } else{
+                    System.out.println("input text: "+input.getText().toString()+"end");
                     changeCity(input.getText().toString());
+
                 }
             }
         });
@@ -204,13 +209,15 @@ public class WeatherFragment extends Fragment {
     }
     public void changeCity(String city){
         System.out.println("changecity in wf");
-        updateWeatherData(city);
-        Fragment frg = null;
-        frg = getFragmentManager().findFragmentByTag("WeatherFragment");
-        final FragmentTransaction ft = getFragmentManager().beginTransaction();
-        ft.detach(frg);
-        ft.attach(frg);
-        ft.commit();
-        new CityPreference(getActivity()).setCity(city);
+       // if(!city.isEmpty()) { //do nothing with empty string
+            updateWeatherData(city);
+            Fragment frg = null;
+            frg = getFragmentManager().findFragmentByTag("WeatherFragment");
+            final FragmentTransaction ft = getFragmentManager().beginTransaction();
+            ft.detach(frg);
+            ft.attach(frg);
+            ft.commit();
+            new CityPreference(getActivity()).setCity(city);
+       // }
     }
 }
