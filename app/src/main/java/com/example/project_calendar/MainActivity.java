@@ -10,6 +10,7 @@ import com.example.project_calendar.base.BaseRecyclerAdapter;
 import com.example.project_calendar.base.EventBus_Tag;
 import com.example.project_calendar.base.MyRVViewHolder;
 import com.example.project_calendar.base.QQBean;
+import com.example.project_calendar.util.DateUtil;
 import com.example.project_calendar.util.ToastUtil;
 import com.example.project_calendar.weather.WeatherFragment;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -23,6 +24,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.View;
 
 import android.view.Menu;
@@ -275,7 +277,7 @@ public class MainActivity extends AppCompatActivity implements CalendarView.OnCa
     @Override
     public void onCalendarSelect(Calendar calendar, boolean isClick) {
         //todayText.setText(calendar.getYear() + "Year" + calendar.getMonth() + "Month");
-        todayText.setText(calendar.getMonth()+ " , "+ calendar.getYear());
+        todayText.setText(" " + calendar.getMonth()+ " , "+ calendar.getYear());
         String time = calendar.getYear() + "-" + append0(calendar.getMonth()) + "-" + append0(calendar.getDay());
 
         if (!selectTime.equals(time)) {
@@ -291,6 +293,17 @@ public class MainActivity extends AppCompatActivity implements CalendarView.OnCa
 
 //                initData(selectTime);
             }
+
+
+        }
+
+        Log.v("-------------", DateUtil.getTodayData_3());
+        if (isClick) {
+            String timesss =  append0(calendar.getMonth()) + "/" + append0(calendar.getDay()) + "/" + calendar.getYear();
+            Intent intent = new Intent(MainActivity.this, RiliActivity.class);
+            intent.putExtra("va1", timesss);
+            intent.putExtra("va2", calendar.getLunar());
+            startActivity(intent);
         }
     }
 

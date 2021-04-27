@@ -36,21 +36,25 @@
 
         <TextView
             android:id="@+id/todayText"
-            android:layout_width="151dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
-            android:layout_marginStart="36dp"
-            android:layout_marginTop="0dp"
-            android:layout_marginEnd="88dp"
-            android:layout_toStartOf="@+id/toToday"
-            android:drawableRight="@mipmap/arraw_down"
+
             android:drawablePadding="6dp"
             android:onClick="gotoweather"
             android:textColor="@color/color_333333"
             android:textSize="30sp"
+
             android:textStyle="bold"
             tools:text="4, 2019" />
+
+        <TextView
+            android:layout_width="40dp"
+            android:layout_toRightOf="@+id/todayText"
+            android:layout_height="40dp"
+            android:layout_marginLeft="10dp"
+            android:background="@mipmap/s0"/>
 
         <TextView
             android:id="@+id/toToday"

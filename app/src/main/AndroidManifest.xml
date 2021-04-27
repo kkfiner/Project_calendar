@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:name=".base.MyApplication"
@@ -13,7 +14,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Project_calendar">
+        android:theme="@style/Theme.Project_calendar"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".RiliActivity"></activity>
+
         <activity android:name=".SettingsActivity"></activity>
         <activity
             android:name=".MainActivity"
