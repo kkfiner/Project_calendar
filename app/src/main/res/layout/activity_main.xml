@@ -51,10 +51,12 @@
 
         <TextView
             android:layout_width="40dp"
-            android:layout_toRightOf="@+id/todayText"
             android:layout_height="40dp"
             android:layout_marginLeft="10dp"
-            android:background="@mipmap/s0"/>
+            android:layout_toRightOf="@+id/todayText"
+            android:background="@mipmap/s0"
+            android:clickable="true"
+            android:onClick="gotoweather" />
 
         <TextView
             android:id="@+id/toToday"

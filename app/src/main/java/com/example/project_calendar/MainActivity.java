@@ -113,24 +113,7 @@ public class MainActivity extends AppCompatActivity implements CalendarView.OnCa
         if(id==R.id.Reminder){
            gotoReminder();
         }
-        if(id==R.id.app_bar_switch){
-            System.out.println("clicked switch");
-            Switch sw=findViewById(R.id.app_bar_switch);
-            sw.setOnClickListener(new View.OnClickListener(){
-                @Override
-                public void onClick(View v) {
-                    if(mcalendarlayout.isExpand()) {
-                        mcalendarlayout.shrink();
-                        System.out.println("switch clicked");
-                    }else{
-                        mcalendarlayout.expand();
-                        System.out.println("switch clicked");
-                    }
 
-                }
-            });
-
-        }
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             gotosettings();

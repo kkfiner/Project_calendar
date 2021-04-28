@@ -134,7 +134,8 @@ public class WeatherFragment extends Fragment {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               getActivity().finish();
+                runningTask.cancel(true);
+                getActivity().finish();
             }
         });
         changecity=rootView.findViewById(R.id.changecity);
